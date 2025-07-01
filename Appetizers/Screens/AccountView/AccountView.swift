@@ -22,7 +22,7 @@ struct AccountView: View {
                         .disableAutocorrection(true)
                     DatePicker("Birthday", selection: $viewModel.birthDate, displayedComponents: .date)
                     Button {
-                        print("save")
+                        viewModel.saveChanges()
                     } label: {
                         Text("Save Changes")
                     }
@@ -37,6 +37,9 @@ struct AccountView: View {
                 
             }
             .navigationTitle("🤣 Accounts")
+            .alert(item: $viewModel.alertItem) { alertItem in
+                Alert(title: alertItem.title, message: alertItem.message, dismissButton: alertItem.dismissButton)
+            }
         }
     }
 }
